@@ -632,14 +632,14 @@
         "tag": "geosite-myg",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/refs/heads/master/geosite/myg.srs",
+        "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/master/geosite/myg.srs",
         "download_detour": "🎯 全球直连"
       },
       {
         "tag": "geosite-okemby",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/refs/heads/master/geosite/okemby.srs",
+        "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/master/geosite/okemby.srs",
         "download_detour": "🎯 全球直连"
       },
       {
