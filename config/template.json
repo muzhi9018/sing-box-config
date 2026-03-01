@@ -152,6 +152,12 @@
       ]
     },
     {
+      "tag": "⬇️ 低倍率",
+      "type": "selector",
+      "outbounds": [
+      ]
+    },
+    {
       "tag": "🏗️ 自建节点",
       "type": "selector",
       "outbounds": [
