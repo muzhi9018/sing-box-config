@@ -1,0 +1,3 @@
+# Ignore geosite JSON rule files
+geosite/*.json
+geosite/**/*.json
