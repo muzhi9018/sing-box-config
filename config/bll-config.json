@@ -27,7 +27,7 @@
         "address_resolver": "default-dns",
         "address_strategy": "ipv4_only",
         "strategy": "ipv4_only",
-        "client_subnet": "1.0.1.0"
+        "client_subnet": "119.136.27.233"
       }
     ],
     "rules": [

@@ -20,8 +20,10 @@
         "type": "https",
         "server": "dns.google",
         "path": "/dns-query",
-        "domain_resolver": "default-dns",
-        "domain_strategy": "ipv4_only",
+        "domain_resolver": {
+          "server": "default-dns",
+          "strategy": "ipv4_only"
+        },
         "detour": "🚀 默认代理"
       }
     ],
@@ -39,12 +41,23 @@
         "server": "google"
       },
       {
-        "rule_set": "geosite-!cn",
-        "server": "google"
-      },
-      {
         "rule_set": "geosite-cn",
         "server": "default-dns"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-!cn",
+            "invert": true
+          },
+          {
+            "rule_set": "geoip-cn"
+          }
+        ],
+        "server": "google",
+        "client_subnet": "114.114.114.114/24"
       }
     ],
     "strategy": "ipv4_only",
@@ -70,31 +83,14 @@
       "set_system_proxy": false
     },
     {
-      "type": "redirect",
-      "tag": "redirect-in",
-      "listen": "::",
-      "listen_port": 5331,
-      "sniff": true,
-      "sniff_override_destination": false
-    },
-    {
-      "type": "tproxy",
-      "tag": "tproxy-in",
-      "listen": "::",
-      "listen_port": 5332,
-      "network": "udp",
-      "sniff": true,
-      "sniff_override_destination": false
-    },
-    {
       "tag": "tun-in",
       "type": "tun",
-      "interface_name": "momo",
       "address": [
         "172.31.0.1/30",
         "fdfe:dcba:9876::1/126"
       ],
-      "auto_route": false,
+      "auto_route": true,
+      "strict_route": true,
       "auto_redirect": false
     }
   ],
@@ -112,56 +108,47 @@
     {
       "tag": "🇭🇰 香港手动",
       "type": "selector",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "tag": "🇯🇵 日本手动",
       "type": "selector",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "tag": "🇸🇬 狮城手动",
       "type": "selector",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "tag": "🇺🇲 美国手动",
       "type": "selector",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "tag": "🇺🇲 美国高级",
       "type": "selector",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "tag": "✈️ 高级",
       "type": "selector",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "tag": "🧪 实验性",
       "type": "selector",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "tag": "⬇️ 低倍率",
       "type": "selector",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "tag": "🏗️ 自建节点",
       "type": "selector",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "tag": "🧠 AI",
@@ -484,6 +471,10 @@
         "outbound": "🎥 OkEmby"
       },
       {
+        "rule_set": "geosite-ip-search",
+        "outbound": "🎯 全球直连"
+      },
+      {
         "rule_set": "geosite-!cn",
         "outbound": "🚀 默认代理"
       },
@@ -643,6 +634,13 @@
         "download_detour": "🎯 全球直连"
       },
       {
+        "tag": "geosite-ip-search",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/master/geosite/ip-search.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
         "tag": "geosite-!cn",
         "type": "remote",
         "format": "binary",
@@ -690,23 +688,34 @@
         "format": "binary",
         "url": "https://github.com/qljsyph/ruleset-icon/raw/refs/heads/main/sing-box/geoip/China-ASN-combined-ip.srs",
         "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-geolocation-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-geolocation-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs",
+        "download_detour": "🎯 全球直连"
       }
     ],
     "auto_detect_interface": true,
     "final": "🐠 漏网之鱼",
     "default_domain_resolver": {
-      "server": "google"
+      "server": "default-dns"
     }
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "path": "/etc/momo/run/cache.db"
+      "enabled": true
     },
     "clash_api": {
-      "external_controller": "0.0.0.0:9095",
-      "external_ui": "/etc/momo/run/ui",
-      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
+      "external_controller": "127.0.0.1:9095",
       "external_ui_download_detour": "🎯 全球直连",
       "secret": "",
       "default_mode": "rule"

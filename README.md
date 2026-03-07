@@ -1,5 +1,10 @@
 # sing-box-config
 
+# 模板
+- `config/template.json`：默认模板
+- `config/template-realip.json`：RealIP 模式模板（不使用 fakeip，macOS 已移除 redirect/tproxy 入站）
+- `config/config-macos.json`：基于 RealIP 模板的 macOS 基础配置（需注入订阅节点）
+
 # 示例
 
 🕳ℹ️🐸 手动选择|♻️ 自动选择🏷ℹ️^(?!.*(?:官网|剩余|流量|套餐|免费|订阅|到期时间|全球直连|GB|Expire|Expire Date|Traffic|ExpireDate)).*
