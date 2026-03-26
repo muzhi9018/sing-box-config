@@ -743,7 +743,7 @@
       "external_controller": "0.0.0.0:9095",
       "external_ui": "/etc/momo/run/ui",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
-      "external_ui_download_detour": "🚀 默认代理",
+      "external_ui_download_detour": "自建-DM-Reality",
       "secret": "",
       "default_mode": "rule"
     }
