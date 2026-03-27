@@ -354,7 +354,7 @@
       "outbounds": [
         "🎯 全球直连"
       ],
-      "default": "🎯 全球直连"
+      "default": "自建-DM-Reality"
     },
     {
       "tag": "♻️ 自动选择",
@@ -506,6 +506,10 @@
         "outbound": "🎯 全球直连"
       },
       {
+        "rule_set": "geosite-m-team",
+        "outbound": "🎯 全球直连"
+      },
+      {
         "rule_set": "geosite-!cn",
         "outbound": "🚀 默认代理"
       },
@@ -543,189 +547,196 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-!cn.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-youtube",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-google",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-github",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-openai",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/openai.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-onedrive",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-microsoft",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-apple",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-telegram",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-line",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/line.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-facebook",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/facebook.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-tencent",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tencent.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-tiktok",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-netflix",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/netflix.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-paypal",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/paypal.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-steam-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam@cn.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-steam",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-myg",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/master/geosite/myg.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-okemby",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/master/geosite/okemby.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
+      },
+      {
+        "tag": "geosite-m-team",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/master/geosite/m-team.srs",
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-ip-search",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/master/geosite/ip-search.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-!cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geosite-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geoip-google",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geoip-apple",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geoip-telegram",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geoip-netflix",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
-        "download_detour": "自建-DM-Reality"
+        "download_detour": "🚀 默认代理"
       }
     ],
     "auto_detect_interface": true,
