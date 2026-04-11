@@ -16,6 +16,16 @@
         "type": "local"
       },
       {
+        "tag": "tw-isp-dns",
+        "type": "https",
+        "server": "dns.ls.amuzhi.cfd",
+        "path": "/dns-query",
+        "domain_resolver": {
+          "server": "default-dns",
+          "strategy": "ipv4_only"
+        }
+      },
+      {
         "tag": "google",
         "type": "https",
         "server": "dns.google",
@@ -39,6 +49,10 @@
       {
         "clash_mode": "global",
         "server": "google"
+      },
+      {
+        "rule_set": "geosite-facebook",
+        "server": "tw-isp-dns"
       },
       {
         "rule_set": "geosite-cn",
@@ -84,8 +98,7 @@
       "tag": "tun-in",
       "type": "tun",
       "address": [
-        "172.31.0.1/30",
-        "fdfe:dcba:9876::1/126"
+        "172.31.0.1/30"
       ],
       "auto_route": true,
       "strict_route": true
@@ -387,10 +400,6 @@
       {
         "protocol": "dns",
         "action": "hijack-dns"
-      },
-      {
-        "protocol": "quic",
-        "action": "reject"
       },
       {
         "ip_is_private": true,
