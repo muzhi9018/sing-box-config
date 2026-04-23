@@ -51,12 +51,24 @@
         "server": "google"
       },
       {
-        "rule_set": "geosite-facebook",
+        "rule_set": [
+          "geosite-facebook",
+          "geosite-instagram",
+          "geosite-tiktok",
+          "geosite-line"
+        ],
         "server": "tw-isp-dns"
       },
       {
         "rule_set": "geosite-cn",
         "server": "default-dns"
+      },
+      {
+        "rule_set": "geosite-!cn",
+        "invert": true,
+        "action": "evaluate",
+        "server": "google",
+        "client_subnet": "114.114.114.114/24"
       },
       {
         "type": "logical",
@@ -67,11 +79,11 @@
             "invert": true
           },
           {
+            "match_response": true,
             "rule_set": "geoip-cn"
           }
         ],
-        "server": "google",
-        "client_subnet": "114.114.114.114/24"
+        "action": "respond"
       }
     ],
     "strategy": "ipv4_only",
@@ -118,8 +130,7 @@
       "type": "tun",
       "interface_name": "momo",
       "address": [
-        "172.31.0.1/30",
-        "fdfe:dcba:9876::1/126"
+        "172.31.0.1/30"
       ],
       "auto_route": true,
       "strict_route": true,
@@ -183,6 +194,11 @@
       "outbounds": []
     },
     {
+      "tag": "💵 运营专线",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
       "tag": "🧠 AI",
       "type": "selector",
       "outbounds": [
@@ -242,8 +258,10 @@
       "outbounds": [
         "🚀 默认代理",
         "🐸 手动选择",
+        "💵 运营专线",
         "🎯 全球直连"
-      ]
+      ],
+      "default": "💵 运营专线"
     },
     {
       "tag": "📖 Facebook",
@@ -251,8 +269,20 @@
       "outbounds": [
         "🚀 默认代理",
         "🐸 手动选择",
+        "💵 运营专线",
         "🎯 全球直连"
-      ]
+      ],
+      "default": "💵 运营专线"
+    },
+    {
+      "tag": "🎑 Instagram",
+      "type": "selector",
+      "outbounds": [
+        "🚀 默认代理",
+        "🐸 手动选择",
+        "🎯 全球直连"
+      ],
+      "default": "💵 运营专线"
     },
     {
       "tag": "🐧 Tencent",
@@ -269,8 +299,10 @@
       "outbounds": [
         "🚀 默认代理",
         "🐸 手动选择",
+        "💵 运营专线",
         "🎯 全球直连"
-      ]
+      ],
+      "default": "💵 运营专线"
     },
     {
       "tag": "🎥 Netflix",
@@ -484,6 +516,10 @@
         "outbound": "📖 Facebook"
       },
       {
+        "rule_set": "geosite-instagram",
+        "outbound": "🎑 Instagram"
+      },
+      {
         "rule_set": "geosite-tencent",
         "outbound": "🐧 Tencent"
       },
@@ -632,6 +668,12 @@
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/facebook.srs",
         "download_detour": "🚀 默认代理"
+      },
+      {
+        "tag": "geosite-instagram",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/instagram.srs"
       },
       {
         "tag": "geosite-tencent",
