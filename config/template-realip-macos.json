@@ -9,7 +9,7 @@
       {
         "tag": "default-dns",
         "type": "udp",
-        "server": "114.114.114.114"
+        "server": "223.5.5.5"
       },
       {
         "tag": "system-dns",
@@ -18,12 +18,13 @@
       {
         "tag": "tw-isp-dns",
         "type": "https",
-        "server": "dns.ls.amuzhi.cfd",
+        "server": "d.ls.amuzhi.cfd",
         "path": "/dns-query",
         "domain_resolver": {
           "server": "default-dns",
           "strategy": "ipv4_only"
-        }
+        },
+        "detour": "🌍 运营-DNS"
       },
       {
         "tag": "google",
@@ -34,7 +35,7 @@
           "server": "default-dns",
           "strategy": "ipv4_only"
         },
-        "detour": "🚀 默认代理"
+        "detour": "🌍 DNS"
       }
     ],
     "rules": [
@@ -127,6 +128,25 @@
         "🎯 全球直连"
       ],
       "default": "🐸 手动选择"
+    },
+    {
+      "tag": "🌍 DNS",
+      "type": "selector",
+      "outbounds": [
+        "🐸 手动选择",
+        "🎯 全球直连",
+        "🚀 默认代理"
+      ],
+      "default": "🚀 默认代理"
+    },
+    {
+      "tag": "🌍 运营-DNS",
+      "type": "selector",
+      "outbounds": [
+        "🎯 全球直连",
+        "🚀 默认代理"
+      ],
+      "default": "🎯 全球直连"
     },
     {
       "tag": "🇭🇰 香港手动",
