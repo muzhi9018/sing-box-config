@@ -65,13 +65,6 @@
         "server": "default-dns"
       },
       {
-        "rule_set": "geosite-!cn",
-        "invert": true,
-        "action": "evaluate",
-        "server": "google",
-        "client_subnet": "114.114.114.114/24"
-      },
-      {
         "type": "logical",
         "mode": "and",
         "rules": [
@@ -80,11 +73,11 @@
             "invert": true
           },
           {
-            "match_response": true,
             "rule_set": "geoip-cn"
           }
         ],
-        "action": "respond"
+        "server": "google",
+        "client_subnet": "114.114.114.114/24"
       }
     ],
     "strategy": "ipv4_only",
@@ -105,26 +98,20 @@
       "tag": "mixed-in",
       "listen": "::",
       "listen_port": 5330,
-      "sniff": true,
-      "sniff_override_destination": false,
       "set_system_proxy": false
     },
     {
       "type": "redirect",
       "tag": "redirect-in",
       "listen": "::",
-      "listen_port": 5331,
-      "sniff": true,
-      "sniff_override_destination": false
+      "listen_port": 5331
     },
     {
       "type": "tproxy",
       "tag": "tproxy-in",
       "listen": "::",
       "listen_port": 5332,
-      "network": "udp",
-      "sniff": true,
-      "sniff_override_destination": false
+      "network": "udp"
     },
     {
       "tag": "tun-in",
@@ -300,6 +287,7 @@
       "outbounds": [
         "🚀 默认代理",
         "🐸 手动选择",
+        "💵 运营专线",
         "🎯 全球直连"
       ],
       "default": "💵 运营专线"
