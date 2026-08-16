@@ -18,7 +18,7 @@
       {
         "tag": "tw-isp-dns",
         "type": "https",
-        "server": "d.ls.amuzhi.cfd",
+        "server": "qds.jstb.amuzhi.cfd",
         "path": "/dns-query",
         "domain_resolver": {
           "server": "default-dns",
@@ -408,7 +408,7 @@
       "outbounds": [
         "🎯 全球直连"
       ],
-      "default": "自建-DM-Reality"
+      "default": "🇨🇳台湾-HiNet-RY"
     },
     {
       "tag": "♻️ 自动选择",
