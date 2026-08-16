@@ -7,6 +7,10 @@
 // 支持每个 🕳 规则换行书写
 // ...
 // 可选参数: includeUnsupportedProxy 含不支持的协议 SSR 和 Snell. 用法: `&includeUnsupportedProxy=true`
+// 可选参数: detour. 为匹配节点名称的订阅 outbound 设置 detour, 格式为 `节点名称匹配规则🏷detour 标签`.
+// 支持用 🕳 分隔多条规则，规则按顺序应用；同一节点匹配多条时，后面的规则会覆盖前面的规则。
+// 例如: `&detour=ℹ️台湾-HiNet🏷🧪 实验性🕳ℹ️日本🏷🚀 默认代理`
+// 节点名称匹配规则为正则表达式；不加 ^ 和 $ 时即为“名称包含”。ℹ️ 表示忽略大小写。
 
 // 支持传入订阅 URL. 参数为 url. 记得 url 在 URL query 参数中使用需要 encodeURIComponent. 直接使用前端的可视化参数编辑不需要 encodeURIComponent.
 // 例如: http://a.com?token=123 应使用 url=http%3A%2F%2Fa.com%3Ftoken%3D123
@@ -14,9 +18,9 @@
 // ⚠️ 如果 outbounds 为空, 自动创建 COMPATIBLE(direct) 并插入 防止报错
 log(`🚀 开始`)
 
-let { type, name, outbound, includeUnsupportedProxy, url } = $arguments
+let { type, name, outbound, detour, includeUnsupportedProxy, url } = $arguments
 
-log(`传入参数 type: ${type}, name: ${name}, outbound: ${outbound}`)
+log(`传入参数 type: ${type}, name: ${name}, outbound: ${outbound}, detour: ${detour}`)
 
 type = /^1$|col|组合/i.test(type) ? 'collection' : 'subscription'
 
@@ -68,7 +72,19 @@ endpoints = data.endpoints ?? []
 proxies = [...outbounds, ...endpoints]
 log(`获取到 ${outbounds.length} 个节点, ${endpoints.length} 个端点`)
 
-log(`③ outbound 规则解析`)
+log(`③ detour 规则解析`)
+const detourRules = parseDetourRules(detour)
+
+log(`④ 为订阅节点设置 detour`)
+detourRules.forEach(([tagRegex, detourTag]) => {
+  const matchedOutbounds = outbounds.filter(outbound => tagRegex.test(outbound.tag))
+  matchedOutbounds.forEach(outbound => {
+    outbound.detour = detourTag
+  })
+  log(`🏷 ${tagRegex} 匹配 ${matchedOutbounds.length} 个节点，设置 detour 为 ${detourTag}`)
+})
+
+log(`⑤ outbound 规则解析`)
 const outboundRules = outbound
     .split('🕳')
     .map(i => i.trim())
@@ -80,7 +96,7 @@ const outboundRules = outbound
       return [outboundPattern, tagRegex]
     })
 
-log(`④ outbound 插入节点`)
+log(`⑥ outbound 插入节点`)
 if (!Array.isArray(config.outbounds)) {
   config.outbounds = []
 }
@@ -104,7 +120,7 @@ const compatible_outbound = {
 }
 
 let compatible
-log(`⑤ 空 outbounds 检查`)
+log(`⑦ 空 outbounds 检查`)
 config.outbounds.map(outbound => {
   outboundRules.map(([outboundPattern, tagRegex]) => {
     const outboundRegex = createOutboundRegExp(outboundPattern)
@@ -134,6 +150,24 @@ $content = JSON.stringify(config, null, 2)
 
 function getTags(proxies, regex) {
   return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag)
+}
+function parseDetourRules(detour) {
+  if (!detour) {
+    return []
+  }
+  return detour
+    .split('🕳')
+    .map(i => i.trim())
+    .filter(i => i)
+    .map(i => {
+      const [tagPattern, detourTag] = i.split('🏷').map(i => i.trim())
+      if (!tagPattern || !detourTag) {
+        throw new Error(`detour 规则格式错误: ${i}，应为“节点名称匹配规则🏷detour 标签”`)
+      }
+      const tagRegex = createTagRegExp(tagPattern)
+      log(`匹配 🏷 ${tagRegex} 的节点将设置 detour 为 ${detourTag}`)
+      return [tagRegex, detourTag]
+    })
 }
 function log(v) {
   console.log(`[📦 sing-box 模板脚本] ${v}`)
