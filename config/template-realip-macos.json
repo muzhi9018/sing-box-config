@@ -107,7 +107,8 @@
       "tag": "tun-in",
       "type": "tun",
       "address": [
-        "172.31.0.1/30"
+        "172.31.0.1/30",
+        "fdfe:dcba:9876::1/126"
       ],
       "auto_route": true,
       "strict_route": true
@@ -123,6 +124,15 @@
         "🎯 全球直连"
       ],
       "default": "🐸 手动选择"
+    },
+    {
+      "tag": "🐸 手动选择",
+      "type": "selector",
+      "outbounds": [
+        "🧪 实验性",
+        "🎯 全球直连"
+      ],
+      "default": "🧪 实验性"
     },
     {
       "tag": "🌍 DNS",
@@ -144,42 +154,7 @@
       "default": "🎯 全球直连"
     },
     {
-      "tag": "🇭🇰 香港手动",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "🇯🇵 日本手动",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "🇸🇬 狮城手动",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "🇺🇲 美国手动",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "🇺🇲 美国高级",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "✈️ 高级",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
       "tag": "🧪 实验性",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "⬇️ 低倍率",
       "type": "selector",
       "outbounds": []
     },
@@ -192,6 +167,50 @@
       "tag": "💵 运营专线",
       "type": "selector",
       "outbounds": []
+    },
+    {
+      "tag": "💬 Line",
+      "type": "selector",
+      "outbounds": [
+        "🚀 默认代理",
+        "🐸 手动选择",
+        "💵 运营专线",
+        "🎯 全球直连"
+      ],
+      "default": "💵 运营专线"
+    },
+    {
+      "tag": "📖 Facebook",
+      "type": "selector",
+      "outbounds": [
+        "🚀 默认代理",
+        "🐸 手动选择",
+        "💵 运营专线",
+        "🎯 全球直连"
+      ],
+      "default": "💵 运营专线"
+    },
+    {
+      "tag": "🎑 Instagram",
+      "type": "selector",
+      "outbounds": [
+        "🚀 默认代理",
+        "🐸 手动选择",
+        "💵 运营专线",
+        "🎯 全球直连"
+      ],
+      "default": "💵 运营专线"
+    },
+    {
+      "tag": "🎵 TikTok",
+      "type": "selector",
+      "outbounds": [
+        "🚀 默认代理",
+        "🐸 手动选择",
+        "💵 运营专线",
+        "🎯 全球直连"
+      ],
+      "default": "💵 运营专线"
     },
     {
       "tag": "🧠 AI",
@@ -248,37 +267,22 @@
       ]
     },
     {
-      "tag": "💬 Line",
+      "tag": "🎥 墨云阁",
       "type": "selector",
       "outbounds": [
         "🚀 默认代理",
         "🐸 手动选择",
-        "💵 运营专线",
         "🎯 全球直连"
-      ],
-      "default": "💵 运营专线"
+      ]
     },
     {
-      "tag": "📖 Facebook",
+      "tag": "🎥 OkEmby",
       "type": "selector",
       "outbounds": [
         "🚀 默认代理",
         "🐸 手动选择",
-        "💵 运营专线",
         "🎯 全球直连"
-      ],
-      "default": "💵 运营专线"
-    },
-    {
-      "tag": "🎑 Instagram",
-      "type": "selector",
-      "outbounds": [
-        "🚀 默认代理",
-        "🐸 手动选择",
-        "💵 运营专线",
-        "🎯 全球直连"
-      ],
-      "default": "💵 运营专线"
+      ]
     },
     {
       "tag": "🐧 Tencent",
@@ -290,36 +294,7 @@
       ]
     },
     {
-      "tag": "🎵 TikTok",
-      "type": "selector",
-      "outbounds": [
-        "🚀 默认代理",
-        "🐸 手动选择",
-        "💵 运营专线",
-        "🎯 全球直连"
-      ],
-      "default": "💵 运营专线"
-    },
-    {
       "tag": "🎥 Netflix",
-      "type": "selector",
-      "outbounds": [
-        "🚀 默认代理",
-        "🐸 手动选择",
-        "🎯 全球直连"
-      ]
-    },
-    {
-      "tag": "🎥 墨云阁",
-      "type": "selector",
-      "outbounds": [
-        "🚀 默认代理",
-        "🐸 手动选择",
-        "🎯 全球直连"
-      ]
-    },
-    {
-      "tag": "🎥 OkEmby",
       "type": "selector",
       "outbounds": [
         "🚀 默认代理",
@@ -382,6 +357,41 @@
       ]
     },
     {
+      "tag": "⬇️ 低倍率",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "✈️ 高级",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇭🇰 香港手动",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇯🇵 日本手动",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇸🇬 狮城手动",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇺🇲 美国手动",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇺🇲 美国高级",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
       "tag": "🐠 漏网之鱼",
       "type": "selector",
       "outbounds": [
@@ -389,15 +399,6 @@
         "🎯 全球直连"
       ],
       "default": "🚀 默认代理"
-    },
-    {
-      "tag": "🐸 手动选择",
-      "type": "selector",
-      "outbounds": [
-        "🎯 全球直连",
-        "🏗️ 自建节点"
-      ],
-      "default": "🇨🇳台湾-HiNet-RY"
     },
     {
       "tag": "♻️ 自动选择",
