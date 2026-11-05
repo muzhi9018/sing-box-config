@@ -107,8 +107,7 @@
       "tag": "tun-in",
       "type": "tun",
       "address": [
-        "172.31.0.1/30",
-        "fdfe:dcba:9876::1/126"
+        "172.31.0.1/30"
       ],
       "auto_route": true,
       "strict_route": true
