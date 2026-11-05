@@ -149,6 +149,7 @@
       "type": "selector",
       "outbounds": [
         "🎯 全球直连",
+        "💵 运营专线",
         "🚀 默认代理"
       ],
       "default": "🎯 全球直连"
