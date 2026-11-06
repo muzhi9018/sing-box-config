@@ -2,3 +2,6 @@
 geosite/*.json
 geosite/**/*.json
 .idea/**
+worker/.wrangler
+worker/generated
+*.sh
