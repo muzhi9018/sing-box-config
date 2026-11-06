@@ -1,4 +1,9 @@
 {
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
   "dns": {
     "servers": [
       {
@@ -87,6 +92,38 @@
     "disable_expire": false,
     "final": "google"
   },
+  "http_clients": [
+    {
+      "tag": "resource-download",
+      "detour": "🚀 默认代理"
+    }
+  ],
+  "inbounds": [
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 5333
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 5330,
+      "set_system_proxy": false
+    },
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "address": [
+        "172.31.0.1/30"
+      ],
+      "auto_route": true,
+      "strict_route": true,
+      "auto_redirect": true,
+      "dns_mode": "hijack"
+    }
+  ],
   "outbounds": [
     {
       "tag": "🚀 默认代理",
@@ -756,51 +793,6 @@
     },
     "default_http_client": "resource-download"
   },
-  "inbounds": [
-    {
-      "type": "direct",
-      "tag": "dns-in",
-      "listen": "127.0.0.1",
-      "listen_port": 5333
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "127.0.0.1",
-      "listen_port": 5330,
-      "set_system_proxy": false
-    },
-    {
-      "tag": "tun-in",
-      "type": "tun",
-      "address": [
-        "172.31.0.1/30"
-      ],
-      "auto_route": true,
-      "strict_route": true,
-      "auto_redirect": true,
-      "dns_mode": "hijack"
-    }
-  ],
-  "experimental": {
-    "cache_file": {
-      "enabled": true
-    },
-    "clash_api": {
-      "default_mode": "rule"
-    }
-  },
-  "log": {
-    "disabled": false,
-    "level": "info",
-    "timestamp": true
-  },
-  "http_clients": [
-    {
-      "tag": "resource-download",
-      "detour": "🚀 默认代理"
-    }
-  ],
   "services": [
     {
       "type": "api",
@@ -813,5 +805,13 @@
         "http_client": "resource-download"
       }
     }
-  ]
+  ],
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    },
+    "clash_api": {
+      "default_mode": "rule"
+    }
+  }
 }
