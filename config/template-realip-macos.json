@@ -85,7 +85,7 @@
   },
   "http_clients": [
     {
-      "tag": "rule-set-download",
+      "tag": "resource-download",
       "detour": "🚀 默认代理"
     }
   ],
@@ -538,6 +538,10 @@
         "outbound": "🎮 Steam"
       },
       {
+        "rule_set": "direct-ip",
+        "outbound": "🎯 全球直连"
+      },
+      {
         "rule_set": "geosite-myg",
         "outbound": "🎥 墨云阁"
       },
@@ -691,6 +695,12 @@
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam.srs"
       },
       {
+        "tag": "direct-ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/muzhi9018/sing-box-config/master/geosite/direct-ip.srs"
+      },
+      {
         "tag": "geosite-myg",
         "type": "remote",
         "format": "binary",
@@ -752,7 +762,7 @@
       }
     ],
     "auto_detect_interface": true,
-    "default_http_client": "rule-set-download",
+    "default_http_client": "resource-download",
     "final": "🐠 漏网之鱼",
     "default_domain_resolver": {
       "server": "default-dns"
