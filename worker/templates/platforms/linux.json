@@ -1,0 +1,36 @@
+{
+  "overrides": {
+    "services": [
+      {
+        "type": "api",
+        "tag": "dashboard-api",
+        "listen": "127.0.0.1",
+        "listen_port": 9095,
+        "secret": "",
+        "dashboard": {
+          "enabled": true,
+          "http_client": "resource-download"
+        }
+      }
+    ]
+  },
+  "arrays": {
+    "inbounds": [
+      {
+        "op": "merge",
+        "match": { "tag": "tun-in" },
+        "value": {
+          "auto_redirect": true,
+          "dns_mode": "hijack"
+        }
+      }
+    ],
+    "route.rule_set": [
+      {
+        "op": "move-before",
+        "match": { "tag": "geosite-steam" },
+        "value": ["direct-ip"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "overrides": {
+    "dns": {
+      "independent_cache": false
+    },
+    "experimental": {
+      "clash_api": {
+        "external_controller": "127.0.0.1:9095",
+        "external_ui_download_detour": "🚀 默认代理",
+        "secret": ""
+      }
+    }
+  },
+  "arrays": {
+    "dns.rules": [
+      {
+        "op": "replace",
+        "match": { "action": "respond" },
+        "value": {
+          "match_response": true,
+          "rule_set": "geoip-cn",
+          "action": "respond"
+        }
+      }
+    ],
+    "route.rules": [
+      {
+        "op": "remove",
+        "match": { "protocol": "quic", "action": "reject" }
+      },
+      {
+        "op": "remove",
+        "match": { "rule_set": "geosite-m-team" }
+      }
+    ],
+    "route.rule_set": [
+      {
+        "op": "remove",
+        "match": { "tag": "geosite-m-team" }
+      }
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "overrides": {
+    "dns": {
+      "final": "default-dns",
+      "independent_cache": false
+    },
+    "experimental": {
+      "clash_api": {
+        "external_controller": "127.0.0.1:9095",
+        "external_ui_download_detour": "🚀 默认代理",
+        "secret": ""
+      }
+    }
+  },
+  "arrays": {
+    "dns.servers": [
+      {
+        "op": "replace",
+        "match": { "tag": "default-dns" },
+        "value": {
+          "tag": "default-dns",
+          "type": "https",
+          "server": "1.1.1.1",
+          "path": "/dns-query",
+          "tls": {
+            "enabled": true,
+            "server_name": "cloudflare-dns.com"
+          },
+          "detour": "🏗️ 自建节点"
+        }
+      }
+    ],
+    "dns.rules": [
+      {
+        "op": "insert-before",
+        "match": { "clash_mode": "direct" },
+        "value": [
+          {
+            "domain_suffix": [
+              "amuzhi.cfd",
+              "aws-agent.biz"
+            ],
+            "server": "default-dns"
+          }
+        ]
+      }
+    ],
+    "inbounds": [
+      {
+        "op": "merge",
+        "match": { "tag": "tun-in" },
+        "value": {
+          "route_exclude_address": [
+            "172.64.229.226/32",
+            "1.1.1.1/32",
+            "147.90.0.0/16",
+            "58.247.187.115/32"
+          ],
+          "dns_mode": "hijack"
+        }
+      }
+    ],
+    "outbounds": [
+      {
+        "op": "merge",
+        "match": { "tag": "🌍 运营-DNS" },
+        "value": { "default": "🎯 全球直连" }
+      },
+      {
+        "op": "merge",
+        "match": { "tag": "🐸 手动选择" },
+        "value": {
+          "outbounds": [
+            "🎯 全球直连",
+            "🏗️ 自建节点"
+          ],
+          "default": "🏗️ 自建节点"
+        }
+      },
+      {
+        "op": "move-before",
+        "match": { "tag": "🧪 实验性" },
+        "value": [
+          "🇭🇰 香港手动",
+          "🇯🇵 日本手动",
+          "🇸🇬 狮城手动",
+          "🇺🇲 美国手动",
+          "🇺🇲 美国高级",
+          "✈️ 高级"
+        ]
+      },
+      {
+        "op": "move-before",
+        "match": { "tag": "🏗️ 自建节点" },
+        "value": ["⬇️ 低倍率"]
+      },
+      {
+        "op": "move-before",
+        "match": { "tag": "🎥 墨云阁" },
+        "value": [
+          "💬 Line",
+          "📖 Facebook",
+          "🎑 Instagram",
+          "🐧 Tencent",
+          "🎵 TikTok",
+          "🎥 Netflix"
+        ]
+      },
+      {
+        "op": "move-before",
+        "match": { "tag": "♻️ 自动选择" },
+        "value": ["🐸 手动选择"]
+      }
+    ],
+    "route.rules": [
+      {
+        "op": "remove",
+        "match": { "protocol": "quic", "action": "reject" }
+      },
+      {
+        "op": "remove",
+        "match": { "rule_set": "geosite-m-team" }
+      }
+    ],
+    "route.rule_set": [
+      {
+        "op": "remove",
+        "match": { "tag": "geosite-m-team" }
+      }
+    ]
+  }
+}
