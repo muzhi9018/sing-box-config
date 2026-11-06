@@ -68,7 +68,7 @@ async function fetchTemplate(platform, githubToken) {
 
   const ref = await fetchJson(`https://api.github.com/repos/${repository}/git/ref/heads/${branch}`, {
     headers,
-    redirect: "error",
+    redirect: "manual", // Keep the GitHub token on the original request.
     cf: { cacheTtlByStatus: { "200": 60, "400-599": -1 } },
   });
   const revision = ref?.object?.sha;
