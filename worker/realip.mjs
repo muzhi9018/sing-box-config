@@ -6,7 +6,7 @@ const freshForMs = 5 * 60 * 1000;
 const retainForSeconds = 24 * 60 * 60;
 
 export default {
-  async fetch(request, _env, ctx) {
+  async fetch(request, env, ctx) {
     const { pathname, searchParams } = new URL(request.url);
     const head = request.method === "HEAD";
     if (pathname !== "/template") {
@@ -32,7 +32,7 @@ export default {
     }
 
     try {
-      const { revision, template } = await fetchTemplate(platform);
+      const { revision, template } = await fetchTemplate(platform, env.GITHUB_TOKEN);
       const response = new Response(template, {
         headers: {
           "Content-Type": "application/json; charset=utf-8",
@@ -57,12 +57,18 @@ export default {
   },
 };
 
-async function fetchTemplate(platform) {
+async function fetchTemplate(platform, githubToken) {
+  const headers = {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "sing-box-realip-worker",
+  };
+  if (githubToken) {
+    headers.Authorization = `Bearer ${githubToken}`;
+  }
+
   const ref = await fetchJson(`https://api.github.com/repos/${repository}/git/ref/heads/${branch}`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      "User-Agent": "sing-box-realip-worker",
-    },
+    headers,
+    redirect: "error",
     cf: { cacheTtlByStatus: { "200": 60, "400-599": -1 } },
   });
   const revision = ref?.object?.sha;
@@ -81,7 +87,14 @@ async function fetchTemplate(platform) {
 async function fetchJson(url, options) {
   const response = await fetch(url, { ...options, signal: AbortSignal.timeout(5000) });
   if (!response.ok) {
-    throw new Error(`GitHub HTTP ${response.status} for ${new URL(url).pathname}`);
+    let message = `GitHub HTTP ${response.status} for ${new URL(url).pathname}`;
+    if (response.status === 403 || response.status === 429) {
+      const remaining = response.headers.get("X-RateLimit-Remaining") ?? "unknown";
+      const reset = response.headers.get("X-RateLimit-Reset") ?? "unknown";
+      const retryAfter = response.headers.get("Retry-After") ?? "unknown";
+      message += ` (x-ratelimit-remaining=${remaining}, x-ratelimit-reset=${reset}, retry-after=${retryAfter})`;
+    }
+    throw new Error(message);
   }
   return response.json();
 }

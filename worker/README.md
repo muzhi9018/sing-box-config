@@ -23,8 +23,16 @@ node build-realip.mjs --check
 npx wrangler deploy
 ```
 
+建议给已部署的 Worker 设置 `GITHUB_TOKEN`，让查询分支 SHA 的 GitHub REST 请求使用认证额度。创建 GitHub fine-grained personal access token，仓库访问范围选 `Public repositories`，权限保持默认。该选项提供公开仓库的只读权限。在 `worker/` 内运行以下命令，并在提示时粘贴令牌。GitHub Raw 模板仍按公开地址获取。[GitHub 接口权限](https://docs.github.com/en/rest/git/refs#get-a-reference) · [Cloudflare Worker Secrets](https://developers.cloudflare.com/workers/configuration/secrets/)
+
+```bash
+npx wrangler secret put GITHUB_TOKEN
+```
+
 在 Wrangler 返回的地址后加 `/template?platform=linux`，把完整 URL 填入 Sub-Store 的远程文件地址。模板里的空分组由 Sub-Store 注入节点。控制台密钥由部署环境填入，OpenWrt 的 Clash API 监听 `0.0.0.0:9095`，启用前设置 `experimental.clash_api.secret`。[Clash API 配置](https://sing-box.sagernet.org/zh/configuration/experimental/clash-api/#secret)
 
 以后修改模板 JSON，只需推送到 `master`，Worker 会在缓存刷新时读取新版本。模板按平台缓存 5 分钟，分支查询另有 60 秒缓存。GitHub 读取或合并失败时，Worker 优先返回当前数据中心缓存的上一版模板，并附上 `X-RealIP-Stale: true`。没有可用缓存时返回 HTTP 502。[Cloudflare Cache API](https://developers.cloudflare.com/workers/runtime-apis/cache/)
+
+如果模板接口返回 `502`，用 `npx wrangler tail` 查看上游错误。GitHub 返回 `403` 或 `429` 时，日志会记录限流响应头。`x-ratelimit-remaining=0` 表示额度已用完，`x-ratelimit-reset` 是额度重置的 Unix 时间戳。[GitHub REST API 限流说明](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api)
 
 修改 Worker 的运行代码或 Wrangler 配置后需要重新部署。如果已开启 Workers Builds，可将监听路径的 Include 设为 `worker/realip.mjs`、`worker/render.mjs` 和 `worker/wrangler.jsonc`，让模板更新只通过运行时拉取生效。[构建监听路径](https://developers.cloudflare.com/workers/ci-cd/builds/build-watch-paths/)
