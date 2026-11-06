@@ -22,9 +22,9 @@
         "type": "local"
       },
       {
-        "tag": "tw-isp-dns",
+        "tag": "business-dns",
         "type": "https",
-        "server": "qds.jstb.amuzhi.cfd",
+        "server": "dns.google",
         "path": "/dns-query",
         "domain_resolver": {
           "server": "default-dns",
@@ -71,7 +71,7 @@
           "geosite-tiktok",
           "geosite-line"
         ],
-        "server": "tw-isp-dns"
+        "server": "business-dns"
       },
       {
         "rule_set": "geosite-cn",
@@ -169,6 +169,7 @@
       "type": "selector",
       "outbounds": [
         "🎯 全球直连",
+        "💵 运营专线",
         "🚀 默认代理"
       ],
       "default": "🎯 全球直连"
