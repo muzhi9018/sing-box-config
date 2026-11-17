@@ -178,6 +178,11 @@
       "outbounds": []
     },
     {
+      "tag": "🏠 家宽代理",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
       "tag": "💬 Line",
       "type": "selector",
       "outbounds": [
