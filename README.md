@@ -15,7 +15,7 @@
 
 ## 用 Sub-Store 生成配置
 
-1. 选取对应平台的 JSON 作为模板，在 Sub-Store 中用 [script/template.js](script/template.js) 处理文件。
+1. 选取对应平台的 JSON 作为模板，在 Sub-Store 中用 [script/template.js](script/template.js) 处理文件；若要将默认节点规则独立存放在远程 JSON，改用 [script/template-rules.js](script/template-rules.js)。
 2. 用 `name` 指定订阅名称。使用组合订阅时加上 `type=组合订阅`。设置 `outbound` 为节点分组规则，按需设置 `detour`。[参数示例](#sub-store-参数示例)
 3. 导出为 `sing-box-generated.json`，在目标平台校验后交给 sing-box 服务或客户端加载。
 
@@ -139,3 +139,33 @@ curl -x http://localhost:5330 -I --max-time 15 https://www.youtube.com/
 ```text
 ^链式节点$🏷🏗️ 自建节点
 ```
+
+### 远程节点规则
+
+[script/template-rules.js](script/template-rules.js) 会通过 `rulesUrl` 读取 JSON；省略该参数时，默认读取本仓库的 [node-rules.json](script/node-rules.json)。`rulesUrl` 放在脚本 URL 查询参数中时必须经过 URL 编码。
+
+```text
+&rulesUrl=https%3A%2F%2Fexample.com%2Fnode-rules.json
+```
+
+规则文件使用以下结构。`target_tags` 是模板中出站分组的精确 `tag`；`match` 与 `exclude` 是订阅节点名称的正则，`ℹ️` 表示忽略大小写。空的 `match` 代表匹配全部节点，省略或留空 `exclude` 代表不排除节点。
+
+```json
+{
+  "outbound_rules": [
+    {
+      "target_tags": ["🐸 手动选择", "♻️ 自动选择"],
+      "match": "",
+      "exclude": ""
+    }
+  ],
+  "detour_rules": [
+    {
+      "match": "南山台湾🇨🇳家宽",
+      "detour": "🏠 家宽代理"
+    }
+  ]
+}
+```
+
+同一个模板分组同时匹配远程规则和 `outbound` 参数时，只应用 `outbound` 参数规则。远程 `detour_rules` 先执行，`detour` 参数后执行，因此后者会覆盖同一节点原有或远程设置的 `detour`。

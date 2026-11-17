@@ -1,0 +1,186 @@
+{
+  "outbound_rules": [
+    {
+      "target_tags": [
+        "🐸 手动选择",
+        "♻️ 自动选择"
+      ],
+      "match": "",
+      "exclude": "ℹ️(?:官网|剩余|流量|套餐|免费|订阅|到期时间|全球直连|GB|Expire|Expire Date|Traffic|ExpireDate)"
+    },
+    {
+      "target_tags": [
+        "🌍 DNS"
+      ],
+      "match": "ℹ️^.*(自建|高级|家宽|HiNet).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🌍 运营-DNS"
+      ],
+      "match": "ℹ️^.*(高级|家宽|HiNet).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🏠 家宽代理"
+      ],
+      "match": "ℹ️.*(南山|台湾)",
+      "exclude": "ℹ️(?:家宽|官网)"
+    },
+    {
+      "target_tags": [
+        "🇭🇰 香港手动"
+      ],
+      "match": "ℹ️.*(🇭🇰|HK|hk|香港|港|HongKong)",
+      "exclude": "ℹ️(?:us)"
+    },
+    {
+      "target_tags": [
+        "🇯🇵 日本手动"
+      ],
+      "match": "ℹ️.*(🇯🇵|JP|jp|日本|日|Japan)",
+      "exclude": "ℹ️(?:us)"
+    },
+    {
+      "target_tags": [
+        "🇸🇬 狮城手动"
+      ],
+      "match": "ℹ️.*(新加坡|坡|狮城|SG|Singapore)",
+      "exclude": "ℹ️(?:us)"
+    },
+    {
+      "target_tags": [
+        "🇺🇲 美国手动"
+      ],
+      "match": "ℹ️.*(🇺🇸|US|us|美国|美|United States)",
+      "exclude": "ℹ️(?:AUS|RUS)"
+    },
+    {
+      "target_tags": [
+        "✈️ 高级"
+      ],
+      "match": "ℹ️^.*(高级|家宽).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🇺🇲 美国高级"
+      ],
+      "match": "ℹ️.*(🇺🇸|US|us|美国|美|United States).*(高级|家宽).*",
+      "exclude": "ℹ️(?:AUS|RUS)"
+    },
+    {
+      "target_tags": [
+        "🎵 TikTok"
+      ],
+      "match": "ℹ️^.*(高级|家宽|HiNet).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🧪 实验性"
+      ],
+      "match": "ℹ️^.*(实验).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "⬇️ 低倍率"
+      ],
+      "match": "ℹ️^.*(实验|0\\.).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🏗️ 自建节点"
+      ],
+      "match": "ℹ️^.*(自建).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "💬 Line"
+      ],
+      "match": "ℹ️^.*(高级|家宽|HiNet).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🧠 AI"
+      ],
+      "match": "ℹ️^.*(高级|家宽).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🧠 OpenAi"
+      ],
+      "match": "ℹ️^.*(高级|家宽).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "📲 Telegram"
+      ],
+      "match": "ℹ️^.*(高级|家宽).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "📖 Facebook"
+      ],
+      "match": "ℹ️^.*(高级|家宽|HiNet).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🎑 Instagram"
+      ],
+      "match": "ℹ️^.*(高级|家宽|HiNet).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "💵 运营专线"
+      ],
+      "match": "ℹ️^.*(高级|家宽|HiNet).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "💶 PayPal"
+      ],
+      "match": "ℹ️^.*(高级|家宽).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🎥 墨云阁"
+      ],
+      "match": "ℹ️^.*(自建|实验).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "🎥 OkEmby"
+      ],
+      "match": "ℹ️^.*(自建|实验).*",
+      "exclude": ""
+    },
+    {
+      "target_tags": [
+        "📹 YouTube"
+      ],
+      "match": "ℹ️^.*(自建|实验).*",
+      "exclude": ""
+    }
+  ],
+  "detour_rules": [
+    {
+      "match": "南山台湾🇨🇳家宽",
+      "detour": "🏠 家宽代理"
+    }
+  ]
+}
